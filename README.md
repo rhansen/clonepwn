@@ -21,3 +21,11 @@ If you are using bash:
         git clone https://github.com/richardhansen/clonepwn.git
 
   4. `cd` into the new `clonepwn` directory.
+
+Fix
+---
+
+See [`clonepwn.patch`](clonepwn.patch) for a fix.
+
+The patch was [submitted to the Git mailing list](http://thread.gmane.org/gmane.comp.version-control.git/246629/focus=246678)
+and is likely to be included in Git v2.0.
