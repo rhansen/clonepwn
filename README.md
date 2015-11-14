@@ -18,7 +18,7 @@ If you are using bash:
 
   3. Clone this repository:
 
-        git clone https://github.com/richardhansen/clonepwn.git
+        git clone https://github.com/rhansen/clonepwn.git
 
   4. `cd` into the new `clonepwn` directory.
 
