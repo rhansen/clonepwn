@@ -40,10 +40,10 @@ unusual name:
 
     $(IFS=_;cmd=echo_hello_$USER,_you_are_not_vulnerable_to_clonepwn;cmd2=sed_-e_s/not.v/v/;$cmd|$cmd2)
 
-This name is also valid shell code.  The `__git_ps1` function sets
-`PS1` (the variable that holds your prompt) in a way that causes the
-code to be interpreted by the shell.  This causes the following to
-happen:
+This name is also valid shell code.  Old versions of the `__git_ps1`
+function set `PS1` (the variable that holds your prompt) in a way that
+causes the code to be interpreted by the shell.  This causes the
+following to happen:
 
   1. The shell sets the `IFS` variable to `_`.  This causes the shell
      to break words with underscores into multiple fields.  This makes
@@ -94,10 +94,16 @@ For example, if the branch had been named
 `$(IFS=_;cmd=sudo_rm_-rf_/;$cmd)` then some real damage could have
 been done (erase your hard drive).
 
-Fix
----
+The Fix
+-------
 
-See [`clonepwn.patch`](clonepwn.patch) for a fix.
+The version of `__git_ps1` that comes with Git v1.9.3 and later have
+been fixed.  If you are using an older version, apply the following
+two patches to `git-prompt.sh`:
 
-The patch was [submitted to the Git mailing list](http://thread.gmane.org/gmane.comp.version-control.git/246629/focus=246678)
-and is likely to be included in Git v2.0.
+  * [the fix](https://git.kernel.org/cgit/git/git.git/commit/?id=8976500cbbb13270398d3b3e07a17b8cc7bff43f)
+  * [the fix to the fix](https://git.kernel.org/cgit/git/git.git/commit/?id=1e4119c81b3e203e1729e03be6e4a53eb9207f5c) (the fix introduced a regression for zsh users; this patch fixes that regression)
+
+You may be interested in the [mailing list
+thread](http://thread.gmane.org/gmane.comp.version-control.git/246629)
+where this fix was discussed.
